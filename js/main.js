@@ -3,7 +3,7 @@ import ''*/
 import { drawMenu, Mostrabotoes} from "./menu.js";
 import { drawCapitulo1} from "./capitulo1.js";
 import { drawCapitulos } from "./capitulos.js";
-import { LoopMusica, playMusic } from "./musica.js";
+import { LoopMusica} from "./musica.js";
 
 
 const canvas = document.querySelector('canvas');
@@ -16,7 +16,7 @@ canvas.height = 576;
 ctx.fillStyle = 'lightpink';
 ctx.fillRect(0, 0, canvas.width, canvas.height);  //(x, y, widht, haigh)
 
-let telaAtual = 'capitulo1';
+let telaAtual = 'menu';
 
 
 //desenhando cada tela
@@ -27,7 +27,7 @@ function draw(){
         case 'menu':
         drawMenu();
         Mostrabotoes(true);
-        LoopMusica();
+       //LoopMusica();
         break;
         case 'capitulos':
             drawCapitulos();
@@ -36,7 +36,6 @@ function draw(){
             case 'capitulo1':
             drawCapitulo1();
             Mostrabotoes(false);
-            LoopMusica();
             break;
             default:
                 denhaMenu();
