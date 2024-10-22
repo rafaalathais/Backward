@@ -3,9 +3,6 @@ const ctx = canvas.getContext('2d');
 
 export function drawMenu(){
 
-//var musica;
-//musica = new sound("./audio/Midnight Schrodinger.mp3")
-
     ctx.clearRect(0,0, canvas.width, canvas.height);
     
     
@@ -20,7 +17,7 @@ image.onload = () => {
 
 
 
-canvas.addEventListener("mouseover", function(event) {
+/*canvas.addEventListener("mouseover", function(event) {
     const x = event.mouseX;
     const y = event.mouseY ;
 
@@ -31,14 +28,8 @@ if (x >= 437 && x <= 437 + 190 && y >= 258 && y <= 258 + 50){
     ctx.fillStyle = 'black'
     ctx.fillRect(437, 258, 190,50);
     
- } if (x >= 437 && y >= 324){
-    ctx.fillStyle = 'blue'
-    ctx.fillRect(437, 324,190,50);
-
-    ctx.fillStyle = 'pink'
-    ctx.fillRect(437, 390,190,50);
- }
-})
+ } 
+})*/
    
 }
 

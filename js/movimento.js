@@ -3,6 +3,11 @@ class Movimento{
     
 } 
 
+const andando = {
+    toUp:{
+       toUp: player.position.x +=3
+    }
+}
 // teclas WASD e setinhas 
 const keys = {
     w: {
@@ -28,11 +33,23 @@ const keys = {
     },
     ArrowDown: {
         pressed: false
+    },
+    Enter:{
+        pressed: false
     }
 }
 
+//avançando dialogos
+window.addEventListener('keypress', (e) => {
+    switch (e.key){
+        case 'Enter':
+            keys.Enter.pressed = true
+        break
+    }
+})
 
 // movimento boneco player keydown
+
 let lastKey = ''
 window.addEventListener('keydown', (e) => {
     switch (e.key){

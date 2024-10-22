@@ -1,0 +1,31 @@
+function dialogo1Cena1quarto(ctx){   
+    window.requestAnimationFrame(dialogo1Cena1quarto);  
+
+    if (dialogoAtivo){
+        const dialogo = dialogo1[dialogoAtual];
+    
+        ctx.drawImage(FundoQuarto, 0, 0)
+        
+        //quadrado preto
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.fillRect(50, 400, 920, 140);
+    
+        ctx.beginPath();
+        ctx.strokeStyle = 'gold';
+        ctx.strokeRect(50,400,920,140);
+
+        // desenha texto falas
+        ctx.font='12px dogicapixel';
+        ctx.fillStyle=' white ';
+        const altura = 26;
+
+        dialogo.lines.forEach((line, index) => {
+            ctx.fillText(line, 95, 435 + (index * altura))})  
+        
+        }   
+
+
+// movimento persongem 
+
+
+};

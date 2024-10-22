@@ -12,9 +12,10 @@ class sound {
         this.sound.style.display = "none";
         document.body.appendChild(this.sound);
         this.play = function () {
-            this.sound.play();
+            this.sound.play(); 
         };
-        this.pause = function () {
+        this.pause = function () { 
+            this.sound.currentTime = 0 
             this.sound.pause();
         };
     }
@@ -101,3 +102,25 @@ class BackCeu{
     }
 }
 
+class Coisa {
+    constructor({position, image, width, height}){
+        this.position = position
+        this.image = image
+        this.width = width
+        this.height = height
+    
+        this.moving = false
+    }
+
+    desenhaCoisa(){
+        //  ctx.drawImage(this.image, this.position.x, this.position.y)
+          ctx.drawImage(
+              this.image, 
+              this.position.x,
+              this.position.y,
+               this.width,
+               this.height)
+      }
+
+    
+}

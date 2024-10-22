@@ -18,7 +18,6 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);  //(x, y, widht, haigh)
 
 let telaAtual = 'menu';
 
-
 //desenhando cada tela
 function draw(){
     ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -38,9 +37,11 @@ function draw(){
             Mostrabotoes(false);
             break;
             default:
-                denhaMenu();
+                drawMenu();
     }
 }
+
+// musica 
 
 
 
@@ -51,6 +52,7 @@ const capitulosbotao = document.getElementById("capitulos")
 comecarbotao.addEventListener('click', function(){
     telaAtual = 'capitulo1';
     draw();
+    
 });
 
 capitulosbotao.addEventListener('click', function(){

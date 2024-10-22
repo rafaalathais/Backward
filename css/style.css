@@ -34,16 +34,6 @@ canvas {
     position: relative;
   }
 
-  .transicao{
-    background-color: black;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    pointer-events: none;  
-  }
 
 
 @font-face{
@@ -56,6 +46,8 @@ h1{
   font-size: 70px;
   color: whitesmoke;
   font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  transform: translateY(-0.25em);
 }
 
 .menu{
@@ -85,21 +77,27 @@ li{
 .botao{
   text-decoration: none;
   margin-bottom: 15px;
-  width: 190px;
+  width: 250px;
   height: 50px;
-  color: gold;
-  border: 10;
-  border-style: dashed;
-  border-color: gold;
+   border: dashed;
+ border-color: #AC9D15;
   background-color: transparent;
   cursor: pointer; 
-  /*background-image: linear-gradient(to right, #FF0000, #00FF00);*/
-  /*box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);*/
+}
+
+.botao p{
+  color: #AC9D15;
+  
 }
 
 .botao:hover{
-  background-color: rgba(218, 165, 32, 0.281);
+  /*background-color: rgba(218, 165, 32, 0.281);
+  /*box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  transform: translateY(-0.25em);*/
+  border-color: aliceblue;
 }
+
+
 
 .screen{
   background-color: aqua;
@@ -145,12 +143,129 @@ position: absolute;
   pointer-events: none; 
 }
 
+.textocreditos p{
+  color: aliceblue;
+}
+
+.capitulos{
+  width: 800px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  margin-top: -250px;
+  left: 50%;
+  margin-left: -400px;
+  
+  pointer-events: none; 
+  opacity: 0;
+
+}
+
+.caps p{
+  color: white;
+  font-size: 25px;
+}
+
+.caps{
+  background-color: #AC9D15;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
 h2{
   font-size: 50px;
   color: aliceblue;
 }
 
-p{
-  color: white;
+.teclaEnter img{
+  width: 256;
+  height: 144;
+}
+.teclaEnter{
+  width: 200px;
+  height: 300px;
+  line-height: 20px;
+  
+
+  position: absolute;
+  top: 50%;
+  margin-top: -100px;
+  left: 50%;
+  margin-left: -150px;
+
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
 }
 
+.teclaEnter p{
+  color: aliceblue;
+  animation: piscapisca 1s infinite;
+  text-shadow: #AC9D15 solid 2px;
+}
+
+@keyframes piscapisca {
+  0%{transform:scale(1)}
+  20%{transform:scale(1.1)} 
+  30%{  transform:scale(0.8)}
+  40%{transform:scale(0.9)}
+  50%{transform:scale(1)}
+  60%{transform:scale(0.9)}
+  70%{transform:scale(1.05)}
+  100%{transform:scale(1)}
+}
+
+
+
+.transicao{
+  background-color: black;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;  
+}
+
+.respira{
+  position: absolute;
+ 
+  width: 550px;
+ 
+  top: 80%;
+  margin-top: -5px;
+  left: 40%;
+  margin-left: -150px;
+  opacity: 0;
+}
+
+.controleRespira{
+  position: relative;
+}
+
+.respira p{
+  color: aliceblue;
+  font-size: 15px;
+  text-align: center;
+  animation: piscapisca 1s infinite;
+}
+
+.barraBranca{
+  background-color: rgba(255, 255, 255, 0.87) ;
+
+  height: 40px;
+}
+
+.barraPreta{
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+background-color: black;
+
+  height: 35px;
+  margin: 2px;
+  width: 10%;
+}

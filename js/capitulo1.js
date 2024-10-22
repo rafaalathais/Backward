@@ -1,108 +1,98 @@
-import { collisions } from './colisoes.js';
-import { dialogo1, quebraTexto, dialogo2} from './dialogos.js';
-import { FundoQuarto, juliImg, quartoIMg, playerImgDown, playerImgRight, playerImgUp, playerImgLeft, vizinhancaImg, onibusImg } from './resources.js';
-
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
 //--------------------------------dialogo
-dialogo1.forEach(dialogo => {dialogo.lines = quebraTexto(ctx, dialogo.texto, 430)});
 
-dialogo2.forEach(dialogo => {dialogo.lines = quebraTexto(ctx, dialogo.texto, 380)});
-
+const dialogos = [dialogo1, dialogo2, dialogo3, dialogo4, dialogo5, dialogo6, dialogo7]
 let dialogoAtual = 0;
 let dialogoAtivo = true;
+let linhaAtual = 0
 
-// avançar dialogo1
-function avancardialogo1(){
-if(dialogoAtual < dialogo1.length - 1){
-    dialogoAtual++;
-} else {
-    dialogoAtivo = false;
-    animate();
-}
-}
 
+dialogos.forEach(dialogo => {dialogo.forEach(d => {
+    d.lines = quebraTexto(ctx, d.texto, 370)})}); 
+
+// avançar dialogos
+function avancarDialogo(){
+    const dialogo = dialogos[dialogoAtual]
+    if (linhaAtual < dialogo.length - 1){
+        linhaAtual++;
+        } else {
+            dialogoAtivo++;
+            dialogoAtivo=true
+            linhaAtual = 0
+            if(dialogoAtual < dialogos.length){
+               
+                dialogoAtivo=false
+            }
+        }
+       
+};
+
+            let res = 20
+            function aumentarBarra(){
+                if (res < 100){
+                    res +=10
+                    gsap.to('#barraPreta', {
+                        width: res + '%',
+                        duration: 0.3, 
+                      
+                    })
+                }
+            }
+            window.addEventListener('keydown', (e) => {
+                if (e.key === " " || e.keyCode === 32){
+                    aumentarBarra();
+                }})
 
 
 //desenha capítulo no canvas
 export function drawCapitulo1(){
     ctx.clearRect(0,0, canvas.width, canvas.height);
-    
-  LoopParte1();  
+  /*gsap.set('#overllapingDiv', {
+       opacity: 1, 
+        onComplete(){
 
-    canvas.addEventListener("click", function() {
-       if(dialogoAtivo){
-          avancardialogo1();
-        }});
-      
- //animate();
- // animateRua();
-
-};
-
-//desenha o dialogo1 inicio do jogo -> quarto
-function dialogo1Cena1quarto(ctx){    
-
-    if (dialogoAtivo){
-        const dialogo = dialogo1[dialogoAtual];
-    
-        ctx.drawImage(FundoQuarto, 0, 0)
+            gsap.set('#teclaEnter', {
+                opacity: 1,
+                
+            })
+        }
         
-        //quadrado preto
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-        ctx.fillRect(50, 400, 920, 140);
-    
-        ctx.beginPath();
-        ctx.strokeStyle = 'gold';
-        ctx.strokeRect(50,400,920,140);
+    })*/
+animateQuarto();
+//animateCasa(); 
 
-        // desenha texto falas
-        ctx.font='12px dogicapixel';
-        ctx.fillStyle=' white ';
-        const altura = 26;
+     //   if (keys.Enter.pressed  && dialogoAtivo){avancardialogo1();}
 
-        dialogo.lines.forEach((line, index) => {
-            ctx.fillText(line, 95, 435 + (index * altura))})   
-    }   
+            window.addEventListener('keypress', (e) => {
+                if (e.key === "Enter" && dialogoAtivo){ avancarDialogo();;}
 
-      };
-    
-function LoopParte1(){
-    dialogo1Cena1quarto(ctx);
-    window.requestAnimationFrame(LoopParte1);   
+                    if (e.key === "Enter" && dialogoAtivo && dialogoAtual === 0 && linhaAtual <= dialogos.length -  1){;
+                        gsap.set('#teclaEnter', {
+                              opacity: 0,
+                              
+                          })
+                          gsap.set('#overllapingDiv', {
+                              opacity:    1,
+                              duration: 50,
+                              onComplete(){
+                                  gsap.to('#overllapingDiv', {
+                                     opacity: 0,
+                                     duration: 7,
+                                     
+                                 })}
+                              })
+                          
+                          ;}
+            })
+
+         
+
+//animateRua();
+
 };
 
-//CENA 2  -> andando pela casa ---------------------------------------------------------------
-const player = new Sprite({
-    position:{
-        x: canvas.width - 224 /4 / 4 ,
-        y: canvas.height - 64 / 2 + 180
-    },
-    image: playerImgDown,
-    frames:{
-        max: 4
-    },
-    sprites: {
-        up: playerImgUp,
-        left: playerImgLeft,
-        down: playerImgDown,
-        right: playerImgRight    
-    }
-})
-
-const offset = {
-    x: -600,
-    y: -400
-}
-
-const QuartoFundo = new Sprite({
-    position: {
-        x: offset.x,
-        y: offset.y,
-    }, 
-    image: quartoIMg
-})
 
 /*const foregroundImg = new Sprite({
     position: {
@@ -113,35 +103,177 @@ const QuartoFundo = new Sprite({
 })*/
 
 
+//CENA 1  -> andando pela casa ---------------------------------------------------------------
+function animateQuarto(){
+   const animateQuartoId =  window.requestAnimationFrame(animateQuarto)
 
-//colisões do quarto
+    ctx.clearRect(0,0, canvas.width, canvas.height);
 
-const collisionsMapQuarto = [];
-for (let i = 0; i < collisions.length; i+= 25){
-    collisionsMapQuarto.push(collisions.slice(i, 25 + i))
-}
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+
+   QuartoFundo.desenhaCoisas();
+
+    //player Juliane
+    player.desenhaCoisas();
+    
+    //foregound.desenhacoisas();
+ 
+    ctx.fillStyle = 'rgba(0,0,0,0.4)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    
+    player.moving = false 
+    player.move = true
+
+     if (dialogoAtual === 3 && dialogoAtivo){
+                ctx.drawImage(quartoJanelaImg,0,0)
+            }  
+       
+
+    if(dialogoAtivo){
+
+        //quadrado pret
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.fillRect(50, 400, 920, 140);
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'gold';
+    ctx.strokeRect(50,400,920,140);
+
+    ctx.drawImage(juliImg, 60, 405, 130, 130);
+
+    // desenha texto falas
+    ctx.font='12px dogicapixel';
+    ctx.fillStyle='white';  
+    const altura = 26;
+
+       // ctx.fillText(linha, 230, 435)
+       const dialogo = dialogos[dialogoAtual];
+       const linha = dialogo[linhaAtual]
+
+      linha.lines.forEach((line, index) => {ctx.fillText(line, 200, 435 + (index * altura))})  
+
+    }  
+       
+     if (dialogoAtivo && player.move) return
+
+     if(!dialogoAtivo && dialogoAtual === 0){
+        if (player.position.x >= 590){
+                player.image = player.sprites.left
+                player.moving = true
+                player.position.x -= 3 
+
+        
+        }  else if (player.position.x <= 590 && player.position.y <= 295 ){
+            player.position.y += 3
+                player.moving = true
+                player.image = player.sprites.down
+
+        }  else if (player.position.y >= 295 && player.position.x >= 310){
+                player.image = player.sprites.left
+                player.position.x -= 3
+                player.moving = true
+
+       } else if (player.position.x <= 310 && dialogoAtual === 0){
+        player.image = player.sprites.up
+  
+        
+            dialogoAtual = 1
+            dialogoAtivo = true
+        }  
+      
+    } if(!dialogoAtivo && dialogoAtual === 1){
+        player.image = player.sprites.down
+        dialogoAtual= 2
+        dialogoAtivo =true
+
+    } if(!dialogoAtivo && dialogoAtual === 2){
+        if(player.position.x <= 500){
+            player.position.x += 3
+            player.image = player.sprites.right
+            player.moving = true
+            
+        } if(player.position.x >= 470 )   {
+              ctx.drawImage(quartoJanelaImg,0,0)       
+                  dialogoAtual= 3
+                  dialogoAtivo =true   
+            } 
+
+        } if(!dialogoAtivo && dialogoAtual === 3)    { 
+
+        if(player.position.x <= 615)    {
+            player.position.x +=3  
+            player.image = player.sprites.right
+            player.moving = true  
+
+           // console.log(player.position.x, player.position.y)
+                     
+          }if(player.position.x >= 615 && player.position.y >= 255)    {
+            player.image = player.sprites.up
+            player.position.y -= 3
+            player.moving = true
+  
+                     
+          }if(player.position.x >= 615 && player.position.y <= 255)   {
+            player.image = player.sprites.down
+            
+           dialogoAtual = 4
+           dialogoAtivo = true   
+                           
+          } 
+
+        } if(!dialogoAtivo && dialogoAtual === 4){
+ 
+
+            gsap.set('#respira', {
+                opacity: 1,
+                
+            })
+            
+            if (res == 100){
+                dialogoAtual = 5
+                dialogoAtivo = true
+
+                gsap.set('#respira', {
+                    opacity: 0,
+                    
+                })
+            }
+
+        }   if(!dialogoAtivo && dialogoAtual === 5){
+
+            gsap.to('#overllapingDiv', {
+                opacity:    1,
+                duration: 5,
+                onComplete(){
+                    gsap.to('#overllapingDiv', {
+                       opacity: 0,
+                       duration: 5,
+                       onComplete(){
+                          animateCasa()
+                          dialogoAtivo = true
+                          dialogoAtual =6
+                          window.cancelAnimationFrame(animateQuartoId)
+                       }
+                       
+                   })}
+                })
+            
+        }
+
+    
+    
+};
+
+
+// sainda casa 
 
 const saidaMapCasa = [];
 for (let i = 0; i < telanData.length; i+= 25){
     saidaMapCasa.push(telanData.slice(i, 25 + i))
 }
-
-const boundaries = []
-
-
-collisionsMapQuarto.forEach((row, i) => {
-    row.forEach((symbol, j) => {
-        if (symbol === 7111)
-        boundaries.push(
-            new Boundary({
-                position:{    
-                    x: j *  Boundary.width + offset.x,
-                    y: i * Boundary.height + offset.y
-              }
-            })
-        )
-    } )
-})
 
 const saidas = []
 
@@ -158,7 +290,8 @@ saidaMapCasa.forEach((row, i) => {
         )
     } )
 })
-const movables = [QuartoFundo, ...boundaries, ...saidas];
+
+const movables = [CasaFundo, ...boundaries, ...saidas];
 
 function colisoesQuadrados({quadrado1, quadrado2}){
     return (quadrado1.position.x + quadrado1.width >= quadrado2.position.x 
@@ -173,25 +306,56 @@ const sair = {
 //function animate(){dialogoCena2AndarCasa();const animateID = window.requestAnimationFrame(animate)}
 
 
-function animate(){
-    const animateID = window.requestAnimationFrame(animate)
-    ctx.clearRect(0,0, canvas.width, canvas.height);
+// ----------------------------------------------------- casa animação andando 
+function animateCasa(){
+   const animateID = window.requestAnimationFrame(animateCasa)
 
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+   ctx.clearRect(0,0, canvas.width, canvas.height);
 
-   QuartoFundo.desenhaCoisas();
+   ctx.fillStyle = 'black';
+   ctx.fillRect(0, 0, canvas.width, canvas.height);
+   
 
 
-  boundaries.forEach((boundary) => { boundary.drawBarreiras() })
-  saidas.forEach((saida) => { saida.drawBarreiras() })
+//boundaries.forEach((boundary) => { boundary.drawBarreiras() })
+//saidas.forEach((saida) => { saida.drawBarreiras() })
 
-    //player Juliane
-    player.desenhaCoisas();
-    //foregound.desenhacoisas();
-  
 
+   CasaFundo.desenhaCoisas();
+
+
+   player.desenhaCoisas();
+
+    if(dialogoAtivo && dialogoAtual === 6){
+
+        //quadrado pret
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.fillRect(50, 400, 920, 140);
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'gold';
+    ctx.strokeRect(50,400,920,140);
+
+    ctx.drawImage(juliImg, 60, 405, 130, 130);
+
+    // desenha texto falas
+    ctx.font='12px dogicapixel';
+    ctx.fillStyle='white';  
+    const altura = 26;
+
+       // ctx.fillText(linha, 230, 435)
+       const dialogo = dialogos[dialogoAtual];
+       const linha = dialogo[linhaAtual]
+
+      linha.lines.forEach((line, index) => {ctx.fillText(line, 200, 435 + (index * altura))})  
+
+    }  
+
+    if (!dialogoAtivo && dialogoAtual === 6 && player.position.x >= 615 && player.position.y <= 255){
+
+    
     let moving = true;
+
     player.moving = false 
 
 if (sair.initiated) return
@@ -215,7 +379,7 @@ if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed || keys
           sair.initiated = true 
           gsap.to('#overllapingDiv', { // transição
             opacity: 1,
-            repeat: 3,
+          //  repeat: 1,
             yoyo: true,
             duration: 0.4,
             onComplete(){
@@ -320,50 +484,14 @@ if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed || keys
         if (moving)
         movables.forEach((movable) => {movable.position.x -= 3})}
 
+    }
+       
 
-
-    
-        //quadrado preto
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-    ctx.fillRect(50, 400, 920, 140);
-
-    ctx.beginPath();
-    ctx.strokeStyle = 'gold';
-    ctx.strokeRect(50,400,920,140);
-
-    ctx.drawImage(juliImg, 60, 405, 130, 130);
-
-    // desenha texto falas
-    ctx.font='12px dogicapixel';
-    ctx.fillStyle='white';  
-    const altura = 26;
-
-        const dialogo = dialogo2[dialogoAtual];
-        dialogo.lines.forEach((line, index) => {
-            ctx.fillText(line, 200, 435 + (index * altura))})   
-        
 };
 
-//--------------------cena3 rua vizinhança juliana sai de casa 
 
-const playerJU2 = new Sprite({
-    position:{
-        x: 0,
-        y: 470
-    },
-    image: playerImgRight,
-    frames:{
-        max: 4
-    },
-    sprites: {
-        up: playerImgUp,
-        left: playerImgLeft,
-        down: playerImgDown,
-        right: playerImgRight    
-    }
-})
 
-playerJU2.move = true;
+//--------------------cena rua vizinhança juliana sai de casa 
 
 /*const playerRick = new Sprite({
     position:{
@@ -381,6 +509,7 @@ playerJU2.move = true;
         right: playerImgRight    
     }
 })*/
+
 function animateRua(){
     window.requestAnimationFrame(animateRua)
     
@@ -393,33 +522,58 @@ function animateRua(){
 
    ctx.drawImage(vizinhancaImg, 0, -575, canvas.width, 576*2);
 
+   let move = false 
+   playerJU2.move = true;
+   playerRick.move = true
+   onibus.move = true
    
    playerJU2.desenhaCoisas();
+   playerRick.desenhaCoisas();
 
  if (playerJU2.move){
    playerJU2.image = playerJU2.sprites.right
    playerJU2.moving = true
 
    playerJU2.position.x += 3
- }
 
-   if(playerJU2.position.x >= 600){
+ } 
+ 
+ if(playerJU2.position.x >= 200 ){
     playerJU2.move = false;
     playerJU2.image = playerJU2.sprites.down
     playerJU2.moving = false
 
+    playerRick.image = playerRick.sprites.right
+    playerRick.moving = true
+ 
+    playerRick.position.x += 3
+
+}  
+
+if(playerRick.position.x >= 100){
+       playerRick.move = false;
+         playerRick.image = playerRick.sprites.down
+         playerRick.moving = false
+
+         onibus.move= true
+         onibus.position.x -= 3
+
+         Backcreditos();
+
+}
+if(onibus.position.x <= 100){
+    onibus.move = false
+
+}
+
+
 // desenha ratanaba 
 
 //desenha onibus
-//ctx.drawImage(onibusImg, 50, 330, 450, 254);
+//onibus.desenhaCoisa();
 
-Backcreditos()
+//Backcreditos()
 
-   } 
-
-
-
-   
 };
    
 

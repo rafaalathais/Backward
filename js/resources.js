@@ -8,7 +8,7 @@ juliImg.src = './img/juliana.png';
 
 //quartoIMG
 const quartoIMg = new Image();
-quartoIMg.src = './img/mapcasajuh.png';
+quartoIMg.src = './img/mapcasaquartojuh.png';
 
 // juliana sprites 
 const playerImgDown = new Image();
@@ -39,6 +39,23 @@ onibusImg.src = './img/onibus.png';
 
 //sala de aula escola
 // rick sprites 
+const playerRickImgDown = new Image();
+playerRickImgDown.src = './img/playerRickDown.png';
+
+const playerRickImgUp = new Image();
+playerRickImgUp.src = './img/playerRickUp.png';
+
+const playerRickImgRight = new Image();
+playerRickImgRight.src = './img/playerRickRight.png';
+
+const playerRickImgLeft = new Image();
+playerRickImgLeft.src = './img/playerRickLeft.png';
+
+const CasaImg = new Image();
+CasaImg.src = './img/mapcasajuh.png';
+
+// fundos da giih
+const quartoJanelaImg = new Image();
+quartoJanelaImg.src = './img/quartoJanela.png'
 //lojinha 
 
-export {FundoQuarto, juliImg, quartoIMg, playerImgDown, playerImgRight, playerImgUp, playerImgLeft, vizinhancaImg, onibusImg};
