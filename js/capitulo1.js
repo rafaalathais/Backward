@@ -49,7 +49,7 @@ function avancarDialogo(){
 //desenha capítulo no canvas
 export function drawCapitulo1(){
     ctx.clearRect(0,0, canvas.width, canvas.height);
-  /*gsap.set('#overllapingDiv', {
+  gsap.set('#overllapingDiv', {
        opacity: 1, 
         onComplete(){
 
@@ -59,7 +59,7 @@ export function drawCapitulo1(){
             })
         }
         
-    })*/
+    })
 animateQuarto();
 //animateCasa(); 
 
@@ -244,18 +244,24 @@ function animateQuarto(){
 
         }   if(!dialogoAtivo && dialogoAtual === 5){
 
+            window.cancelAnimationFrame(animateQuartoId)
+
             gsap.to('#overllapingDiv', {
                 opacity:    1,
                 duration: 5,
                 onComplete(){
                     gsap.to('#overllapingDiv', {
-                       opacity: 0,
-                       duration: 5,
+                       opacity: 1,
+                       duration: 3,
                        onComplete(){
                           animateCasa()
                           dialogoAtivo = true
                           dialogoAtual =6
-                          window.cancelAnimationFrame(animateQuartoId)
+
+                          gsap.to('#overllapingDiv', {
+                            opacity:0,
+                            duration: 1
+                          })
                        }
                        
                    })}
