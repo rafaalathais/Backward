@@ -31,6 +31,14 @@ const CasaFundo = new Sprite({
     image: CasaImg
 })
 
+const EscolaFundo = new Sprite({
+    position: {
+        x: 0, 
+        y: -140,
+    }, 
+    image: corredorEscolaImg
+})
+
 const playerJU2 = new Sprite({
     position:{
         x: 0,

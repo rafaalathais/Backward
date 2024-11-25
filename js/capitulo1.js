@@ -48,7 +48,7 @@ function avancarDialogo(){
 function drawCapitulo1(){
     ctx.clearRect(0,0, canvas.width, canvas.height);
 
-    animateCasa() 
+    animateQuarto() 
 
   if (animacaoAtual === 'animateQuarto'){
     gsap.set('#overllapingDiv', {
@@ -341,7 +341,7 @@ saidaMapCasa.forEach((row, i) => {
     } )
 })
 
-const movables = [CasaFundo, ...boundaries, ...saidas];
+const movables = [CasaFundo, ...boundaries, ...saidas, EscolaFundo];
 
 function colisoesQuadrados({quadrado1, quadrado2}){
     return (quadrado1.position.x + quadrado1.width >= quadrado2.position.x 
@@ -684,7 +684,7 @@ gsap.to('#textocreditos', {
                                 BackcreditosId = null 
 
                                         animacaoAtual = 'animateCalcada'
-                                        //  reposicionaposicao()
+                                        reposicionaposicao()
                                         dialogoAtivo = true
                                         animateCalcada()
 
@@ -703,7 +703,7 @@ gsap.to('#textocreditos', {
 }
 
 
-//function reposicionaposicao(){
+function reposicionaposicao(){
 
     if(animacaoAtual = 'aniamateCalcada'){
     playerRick.position.x = 0
@@ -720,13 +720,20 @@ gsap.to('#textocreditos', {
     onibus.position.x = -5
     onibus.position.y = 245
     }
-//}
-let offsetX =0
+
+    if (animacaoAtual = 'animateCorredor'){
+        player.position.x = 0
+        player.position.y = 0
+    }
+}
+let offsetX = 0
 const velocidade = 2;
+let desenhapersonagens = true
+let animateCalcadaId;
 function animateCalcada(){
     animacaoAtual = 'animateCalcada'
     
-   window.requestAnimationFrame(animateCalcada)
+  animateCalcadaId =  window.requestAnimationFrame(animateCalcada)
 
     ctx.clearRect(0,0, canvas.width, canvas.height);
 
@@ -740,15 +747,19 @@ function animateCalcada(){
     offsetX = -300; 
   }
 
+
 let desenhaOnibus = true
 let andandocalcada = true
 let andaRegina = true
 let andaDuarte = true
+let andaDuarteFrente= false
 
+if (desenhapersonagens){
     playerRick.desenhaCoisas()
     playerJU2.desenhaCoisas()
     playerRegina.desenhaCoisas()
     playerDuarte.desenhaCoisas()
+}
 
 
     if (desenhaOnibus){onibus.desenhaCoisa()}
@@ -824,19 +835,69 @@ if(onibus.position.x <= -500 && playerJU2.position.x <= 60 && dialogoAtivo){
         dialogoAtual = 12
     
     }
-} 
+} if (dialogoAtual === 12 && !dialogoAtivo){
+    andandocalcada = true
+    andaRegina = true
+    andaDuarteFrente = true
+    if (andaDuarteFrente){
+        playerDuarte.position.x += 3
+        playerDuarte.image = playerDuarte.sprites.right
+        playerDuarte.moving = true
+    }
+
+    if (andaRegina){
+        playerRegina.position.x +=3
+        playerRegina.image = playerRegina.sprites.right
+         playerRegina.moving = true
+    }
+
+    if (andandocalcada){
+        playerJU2.position.x +=3
+        playerRick.position.x +=3
+
+    offsetX -= velocidade
+
+    playerJU2.image = playerJU2.sprites.right
+    playerJU2.moving = true
+
+    playerRick.image = playerRick.sprites.right
+    playerRick.moving = true
+    }
+    if(playerJU2.position.x >= 1300 && playerRegina.position.x >=1400){
+        desenhapersonagens = false
+
+        window.cancelAnimationFrame(animateCalcadaId)
+
+        gsap.to('#overllapingDiv', {
+            opacity: 1,
+            duration: 3,
+            onComplete(){
+                reposicionaposicao()
+                animateCorredor()
+
+                gsap.to('#overllapingDiv', {
+                    opacity: 0,
+                    duration: 3
+                })
+            }
+        })
+    }
+}
 
 } 
-
+let animateCorredorId;
 function animateCorredor(){
     animacaoAtual = 'animateCorredor'
     
-   window.requestAnimationFrame(animateCorredor)
+ animateCorredorId = window.requestAnimationFrame(animateCorredor)
 
     ctx.clearRect(0,0, canvas.width, canvas.height);
 
     ctx.fillStyle='black'
     ctx.fillRect(0,0, canvas.width, canvas.height);
+
+    EscolaFundo.desenhaCoisas()
+    player.desenhaCoisas()
     
    // ctx.drawImage(corredorEscolaImg, offsetX, 170);
 }
