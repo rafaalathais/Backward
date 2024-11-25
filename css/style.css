@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+*{
+  box-sizing: border-box;
+  font-family: "dogicapixel"; 
+  
+}
+
+html, body{
+  image-rendering: pixelated; 
+  overflow: hidden;
+}
+
+
+body{ 
+  background-color: black;
+  margin: 0; 
+  padding: 0;
+  cursor: url('../img/cursor.png'), auto;
+  justify-content: center; 
+  align-items: center;
+  min-height: 100vh;
+  display: flex;
+
+  /*overflow: hidden;*/
+}
+body button{
+  cursor: url('../img/pointer.png'), pointer;
+}
+canvas {
+    background-color: antiquewhite;
+    border: 1px solid rgb(112, 110, 0);
+    display: block;
+  
+    image-rendering: pixelated;
+  
+  } 
+
+  .game-container{
+    
+    position: relative;
+    width: 1024px;
+  height: 576px;
+  margin: 0 auto;
+  }
+
+
+
+@font-face{
+  font-family: 'dogicapixel';
+src: url('../fonte/dogicapixel.ttf') format('truetype');
+}
+
+
+h1{
+  font-size: 70px;
+  color: whitesmoke;
+  text-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  transform: translateY(-0.25em);
+}
+
+.menu{
+  /*background-color: rgba(36, 58, 5, 0.459);*/
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  align-items: center;
+}
+
+.caixa-principal{
+  position: relative;
+
+}
+
+li{
+  list-style-type: none;
+}
+
+.botao{
+  text-decoration: none;
+  margin-bottom: 15px;
+  width: 250px;
+  height: 50px;
+  border:3px dashed;
+  border-color: #AC9D15;
+  background-color: transparent;
+}
+
+.botao p{
+  color: #AC9D15;
+  font-size: 15px;
+}
+
+.botao:hover{
+  /*background-color: rgba(218, 165, 32, 0.281);
+  /*box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  transform: translateY(-0.25em);*/
+  border-color: aliceblue;
+}
+
+
+
+.screen{
+  background-color: aqua;
+  color: brown;
+  position: absolute;
+  left: 0;
+}
+
+.vagalumes{
+  background-image: url(../img/logo.jpeg);
+  background-repeat: repeat;
+  width: 100%;
+  height: 100%;
+position: absolute;
+  top: 0;
+  left: 0;
+  animation: animate 15s linear infinite;
+  background-size: 800px;
+  display: none;
+}
+@keyframes animate {
+  from{
+    background-position: 0px 0px;
+  }
+  to{
+    background-position: 100% 980px;
+  }
+}
+
+.textocreditos{
+  position: absolute;
+  width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+ line-height: 3;
+ text-align: center;
+ justify-content: center;
+ align-items: center;
+  
+  
+  opacity: 0;
+  pointer-events: none; 
+
+
+}
+
+.textocreditos p{
+  color: aliceblue;
+}
+
+.capituloscaixa{
+  width: 950px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: center;
+
+  display: none;
+
+}
+
+.capituloscoisas{
+width: 100%;
+height: 300px;
+
+}
+
+.capituloscaixa p{
+  color: white;
+  font-size: 20px;
+}
+
+.capituloscaixa ul button{
+  background: transparent;
+  border: none;
+  width: 200px;
+  margin-top: 10px;
+  border-radius: 2px;
+}
+
+.capituloscaixa ul button:hover{
+ /* background: linear-gradient(to right, #694e918f, #7f4e91ef);*/
+ background-color: #694e918f;
+}
+
+.capituloscaixa img{
+  width: 200px;
+  height: 200px;
+  margin-top: 10px;
+}
+.voltarmenubotao{
+  float: right;
+  width: 140px;
+  background-color: transparent;
+  border: none;
+  border-radius: 2px;
+}
+.voltarmenubotao:hover{
+  background-color: #ac9d15d2;
+}
+.capituloscaixa li{
+  width: 220px;
+  height: 300px;
+ 
+  text-align: center;
+  
+  display: inline-block;
+  border: 3px #AC9D15 dashed;
+  margin-right: 10px;
+}
+.capituloscaixa li:hover{
+  border: aliceblue dashed 3px;
+ 
+}
+
+h2{
+  font-size: 50px;
+  color: aliceblue;
+}
+
+.teclaEnter img{
+  width: 256;
+  height: 144;
+}
+.teclaEnter{
+  width: 200px;
+  height: 300px;
+  line-height: 20px;
+  
+
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+pointer-events: none;
+opacity: 0;
+}
+
+.teclaEnter p{
+  color: aliceblue;
+  animation: piscapisca 1s infinite;
+  text-shadow: #AC9D15 solid 2px;
+}
+
+@keyframes piscapisca {
+  0%{transform:scale(1)}
+  20%{transform:scale(1.1)} 
+  30%{  transform:scale(0.8)}
+  40%{transform:scale(0.9)}
+  50%{transform:scale(1)}
+  60%{transform:scale(0.9)}
+  70%{transform:scale(1.05)}
+  100%{transform:scale(1)}
+}
+
+
+
+.transicao{
+  background-color: black;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;  
+}
+
+.respira{
+  
+  position: fixed;
+ 
+  width: 500px;
+ 
+ 
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0;
+ 
+}
+@media (min-height: 700px) { /* Para telas maiores */
+  .respira {
+    top: 72%;
+  }
+}
+
+@media (max-height: 700px) { /* Para telas menores */
+  .respira {
+    top: 82%;
+  }
+}
+
+.controleRespira{
+  position: relative;
+}
+
+.respira p{
+  color: aliceblue;
+  font-size: 15px;
+  text-align: center;
+  animation: piscapisca 1s infinite;
+}
+
+.barraBranca{
+  background-color: rgba(255, 255, 255, 0.87) ;
+
+  height: 40px;
+}
+
+.barraPreta{
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+background-color: black;
+
+  height: 35px;
+  margin: 2px;
+  width: 10%;
+}
+
+.configscaixa{
+  display: none;
+
+  width: 900px;
+  height: 530px;
+  position: absolute;
+  top: 50%;
+  margin-top: -250px;
+  left: 45%;
+  margin-left: -400px;
+
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  
+}
+.configscaixa p{
+  color: white;
+  font-size: 20px;
+}
+.configscaixa ul button{
+  background: transparent;
+ 
+  width: 200px;
+  margin-top: 20px;
+  border: 3px #AC9D15 dashed;
+
+}
+
+.sairconfigs{
+  float: right;
+  border: 3px #AC9D15 dashed;
+  background: transparent;
+  width: 200px;
+  margin-top: 20px;
+}
+
+.configscaixa button:hover{
+  border-color:purple; 
+}

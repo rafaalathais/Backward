@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ptBr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/icon" href="./img/seta.ico"/>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Backward</title>
+</head>
+<body>
+
+
+    <div id="caixaprincipal" class="caixa-principal"></div>
+
+    <div class="game-conatiner">
+
+
+        <canvas id="canvas"> Desculpa seu navegador não suporta o elemento canvas</canvas>
+        
+    <div class="vagalumes"></div>
+
+    <div class="configscaixa" id="configscaixa">
+        <h2>Configurações</h2>
+        <ul>
+            <li><button  id="voltarmenuconfigs"><p>Menu</p></button></li>
+            <li><button  id="voltarcapitulosbotao"><p>Capítulos</p></button></li>
+            <li><button  id="salvarbotao"><p>Salvar</p></button></li>
+        </ul>
+        <button id="sairconfigs" class="sairconfigs"><p>Sair</p></button>
+    </div>
+    <div class="menu" id="menu">
+        <h1>Backward</h1>
+        <ul>
+            <li><button class="botao" id="comecar"><p>Começar</p></button></li>
+            <li><button class="botao" id="continuar"><p>Continuar</p></button></li>
+            <li><button class="botao" id="capitulos"><p>Capítulos</p></button></li>
+        </ul>
+    </div>
+
+
+    <div class="textocreditos" id="textocreditos"><h2>Backward</h2>
+    <p>Por:<br> Rafaela Thais<br>
+       Rodrigo Lovise<br>
+       Sarah Gomes<br>
+       Giovana Lopes<br>
+       Jenifer Yasminbr
+    </p></div>
+
+    <div class="respira" id="respira">
+    <div id="controleRespira" class="controleRespira">
+    <div id="barraBranca" class="barraBranca"></div>
+    <div id="barraPreta" class="barraPreta"></div>
+
+    <p>Aperte espaço</p>
+    </div>
+</div>
+    
+    <div id="capituloscaixa" class="capituloscaixa">
+        <h2>Capítulos</h2>
+        <div class="capituloscoisas" id="capituloscoisas">
+            <ul>
+            <li>
+                <img src="img/capitulo1imagem.png" alt="imagem capitulo 1">
+                <button id="capitulo1botao" alt="capitulo 1"><p>Capitulo 1</p></button>
+            </li>
+            <li>
+                <img src="img/capitulo1imagem.png" alt="imagem capitulo 1">
+                <button  id="capitulo2botao"><p>Capitulo 2</p></button>
+            </li>
+            <li> 
+                <img src="img/capitulo1imagem.png" alt="imagem capitulo 1">
+                <button id="capitulo3botao"><p>Em breve!</p></button>
+            </li>
+        </ul>
+        <button id="voltarmenu" class="voltarmenubotao"><p> Menu </p></button>
+        </div>
+    </div>
+
+  
+
+    <div class="transicao" id="overllapingDiv"></div>
+
+    <div id="teclaEnter" class="teclaEnter">
+        <img src="img/teclaEnter.png" width="170" height="96">
+        <p>Aperte 'Enter' para iniciar</p>
+    </div>
+
+    
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+<script src="./js/classes.js"></script>
+<script src="./js/resources.js"></script>
+<script src="./js/objetos.js"></script>
+<script src="js/movimento.js"></script>
+<script src="data/colisoes.js"></script>
+<script src="js/boundaries.js"></script>
+<script src="data/telan.js"></script>
+<script src="js/dialogos.js"></script>
+<script src="js/capitulos.js"></script>
+<script src="js/capitulo1.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/musica.js"></script>
+<script src="js/save.js"></script>
+<script src="js/configs.js"></script>
+<script  type="module" src="./js/index.js"></script>
+</body>
+</html>
+
+
+  
