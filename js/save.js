@@ -29,6 +29,7 @@ function salvarProgresso(){
     })
     .then((data) => {
         console.log('Progresso salvo com sucesso!', data);
+        alert('Progresso salvo com sucesso!' + dataSave)
     })
     .catch((erro) => {
         console.error(erro.message);

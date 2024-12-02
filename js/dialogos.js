@@ -47,18 +47,88 @@ const dialogo6 = [
        {personagem: "Juliana", 
         texto: "snif... snif..."},
        {personagem: "Juliana", 
-        texto: "Mas se bem que um banho agora seria bom!"},]
+        texto: "Mas se bem que um banho agora seria bom!"}]
 
 const dialogo8 = [
-    {  personagem: "Rick",
-        texto: "PASSA TUDO, PASSA TUDO!!!"},
+  {  personagem: "Rick",
+    texto: "PASSA TUDO, PASSA TUDO!!!"},
+{  personagem: "Juliana",
+    texto: "AAAAAIIIIII"},
+{  personagem: "Rick",
+    texto: "AHAHAHAHAHAHAHHA"},
+{  personagem: "Juliana",
+    texto: "Mano vey, vai se ferrar!"},
+{  personagem: "Rick",
+    texto: "OIIIIIII"},
+{  personagem: "Juliana",
+    texto: "Bom, oi..."},
+{  personagem: "Rick",
+    texto: "Nossa, que “oi” é esse?"},
+{  personagem: "Rick",
+    texto: "Já é cabisbaixa, mas agora ta é acabada por dentro..."},
+{  personagem: "Juliana",
+    texto: " Aí cara"},
+{  personagem: "Juliana",
+    texto: " De novo tive aquele sonho"},
+{  personagem: "Juliana",
+    texto: " Quer dizer..."},
+{  personagem: "Juliana",
+    texto: " Pesadelo maldito"},
+{  personagem: "Rick",
+    texto: "Você tomou os remédios que a doutora lá prescreveu para você?"},
+{  personagem: "Juliana",
+    texto: " Tomei"},
+{  personagem: "Juliana",
+    texto: " Tomei"},
+{  personagem: "Juliana",
+    texto: " Mas parece que dessa vez não fez efeito porcaria nenhuma"},
+{  personagem: "Rick",
+    texto: "Olha"},
+{  personagem: "Rick",
+    texto: "Se você quiser a gente dá meia volta"},
+{  personagem: "Rick",
+    texto: "Vai para sua casa"},
+{  personagem: "Rick",
+    texto: "Falta aula"},
+{  personagem: "Rick",
+    texto: "Você tenta dormir um pouco"},
+{  personagem: "Rick",
+    texto: "E aí fazemos algo pra te animar"},
+{  personagem: "Rick",
+    texto: "Sei lá"},
+{  personagem: "Juliana",
+    texto: " Não precisa"},
+{  personagem: "Juliana",
+    texto: " Estou até que... disposta..."},
+{  personagem: "Juliana",
+    texto: " Além de que hoje tem trabalho do Valmir"},
+{  personagem: "Juliana",
+    texto: " E também já é final de ano e temos milhões de coisas para entregar"},
+{  personagem: "Juliana",
+    texto: " Mas obrigado cara"},
+{  personagem: "Juliana",
+    texto: " Não sei o que seria de mim sem você!"},
+{  personagem: "Rick",
+    texto: " Sou seu melhor amigo"},
+{  personagem: "Rick",
+    texto: " Sou seu melhor amigo"},
+{  personagem: "Rick",
+    texto: " Te conheço de cima a baixo"},
+{  personagem: "Rick",
+    texto: " Ai não..."},
+{  personagem: "Rick",
+    texto: " O ônibus está vindo..."},
+{  personagem: "Rick",
+    texto: " Nem pra demorar mais cinco minutos ;-;"},
+{  personagem: "Juliana",
+    texto: " Nem me fale cara..."},
+{  personagem: "Juliana",
+    texto: " Nem me fale..."},
+    //Então Zezinho e Ratanaba entram no ônibus e zezinho começa a pensar: 
     {  personagem: "Juliana",
-        texto: "Rick!!!"}, 
-    {  personagem: "Juliana",
-        texto: "Loremisusoaos absjasjas"},
-    {  personagem: "Rick",
-        texto: "fim"}
-]
+            texto: " Por favor, que hoje não tenha mais esse pesadelo..."},
+    //O ônibus parte enquanto toca New Thoughts, e logo aparece a logo, os créditos e o capítulo 1.
+    ]
 
 const dialogo9 = [
     {  personagem: "Rick",
@@ -137,18 +207,43 @@ const dialogo15 = [
         texto: "fim"}
 ]
 // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-const piabanheiro = [
-    {texto: ''}
-]
+
 const opcaoSairdeCasa = [
     {
-        texto: "Deseja sair de casa agora?",
+        texto: "Sair de casa agora?",
         opcoes: [
-            { texto: "Sim.", proximaEscolha: 'sair' },
+            { texto: "Sim, vou para o ponto de ônibus", proximaEscolha: 'sair' },
+            { texto: "Não, quero ficar em casa", proximaEscolha: 'continuar' }
+        ]
+    }
+];
+
+const opcaoEntrarSala = [
+    {
+        texto: "Entarar na sala de aula?",
+        opcoes: [
+            { texto: "Sim.", proximaEscolha: 'entra' },
             { texto: "Não.", proximaEscolha: 'continuar' }
         ]
     }
 ];
+
+const infoPia = {texto: '"Escovar os dentes para começar o dia"'}
+
+const infoTvSala = [
+    {texto: 'Hojejsjsjsj'}
+]
+const infoMesaComer = [
+    {texto: 'Minha mãe saiu, msss'}
+]
+
+const infoGeladeira = [
+    {texto: 'Minha mãe saiu, msss'}
+]
+
+const infoPoltrona = [
+    {texto: 'A poltrona preferida do meu pai...'}
+]
 
 
 // quebrando linhas do dialogo

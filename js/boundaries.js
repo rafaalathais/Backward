@@ -11,7 +11,7 @@ const offset = {
 }
 const boundaries = []
 
-
+function desenhaBarreirasCasa(){
 collisionsMapQuarto.forEach((row, i) => {
     row.forEach((symbol, j) => {
         if (symbol === 7111)
@@ -25,3 +25,4 @@ collisionsMapQuarto.forEach((row, i) => {
         )
     } )
 })
+}

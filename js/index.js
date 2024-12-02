@@ -76,7 +76,6 @@ window.addEventListener('keypress', (e) => {
         
        drawConfigs();
         console.log("who are you?")}
-
 })
 
 const voltarmenuconfigs = document.getElementById('voltarmenuconfigs')
@@ -85,6 +84,7 @@ voltarmenuconfigs.addEventListener('click', function(){
     configscaixa.style.display='none';
     draw()
 })
+
 
 //capitulossssssssss
 const capitulo1botao = document.getElementById('capitulo1botao')
