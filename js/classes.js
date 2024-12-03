@@ -1,26 +1,6 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
-
-
-class sound {
-
-    constructor(src) {
-        this.sound = document.createElement("audio");
-        this.sound.src = src;
-       this.sound.setAttribute("autoplay", "true");
-       this.sound.setAttribute("loop", "true");
-        this.sound.setAttribute("controls", "none");
-        this.sound.style.display = "none";
-        document.body.appendChild(this.sound);
-        this.play = function () {
-            this.sound.play(); 
-        };
-        this.pause = function () { 
-            this.sound.currentTime = 0 
-            this.sound.pause();
-        };
-    }
-}     
+     
 
 class Sprite {
     constructor({position, image, frames = { max: 1}, sprites}){

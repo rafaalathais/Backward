@@ -36,9 +36,9 @@ playerJuSprites.left.src = './img/playerJuLeft.png';
 // objetos encima do player 
 //const foregroundImg = new Imgae()
 
-//corredor escola 
-const escolaCorredorImg = new Image();
-escolaCorredorImg.src = './img/mapcorredorescola.png';
+//escola sala de aula 
+const salaAulaImg = new Image();
+salaAulaImg.src = './img/mapsalaescola.png';
 
 const vizinhancaImg = new Image();
 vizinhancaImg.src = './img/vizinhaca.png';
@@ -74,6 +74,18 @@ playerReginaSprites.up.src = './img/sprites/reginaUp.png';
 playerReginaSprites.right.src = './img/sprites/reginaRight.png';
 playerReginaSprites.left.src= './img/sprites/reginaLeft.png';
 
+//valmir 
+const playerValmirSprites = {
+  down: new Image(),
+  up: new Image(),
+  right: new Image(),
+  left: new Image(),
+};
+playerValmirSprites.down.src = './img/sprites/valmirDown.png';
+playerValmirSprites.up.src = './img/sprites/valmirUp.png';
+playerValmirSprites.right.src = './img/sprites/valmirRight.png';
+playerValmirSprites.left.src= './img/sprites/valmirLeft.png';
+
 //duarte
 const playerDuarteSprites = {
   down: new Image(),
@@ -100,5 +112,7 @@ quartoJanelaImg.src = './img/quartoJanela.png'
 
 const calcadaImg = new Image()
 calcadaImg.src = './img/calcada.png'
-//lojinha 
+
+const quadroCorredorImg = new Image()
+quadroCorredorImg.src = './img/quadroCorredor.png'
 

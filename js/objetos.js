@@ -106,7 +106,22 @@ const playerDuarte = new Sprite({
         right: playerDuarteSprites.right      
     }
 })
-
+const playerValmir = new Sprite({
+    position:{
+        x: 450,
+        y: 115
+    },
+    image: playerValmirSprites.down,
+    frames:{
+        max: 4
+    },
+    sprites: {
+        up: playerValmirSprites.up,
+        left: playerValmirSprites.left,
+        down: playerValmirSprites.down,
+        right: playerValmirSprites.right      
+    }
+})
 
 const onibus = new Coisa({
     position:{

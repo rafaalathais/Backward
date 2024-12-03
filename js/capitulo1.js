@@ -9,16 +9,15 @@ let animacaoAtual;
 let opcoes = [opcaoSairdeCasa[0], opcaoEntrarSala[0]]
 let opacaoAtiva = false
 let opcaoAtual = 0 
-let infos = [infoPia, infoTvSala, infoMesaComer, infoPoltrona]
+let infos = [infoPia,infoGeladeira, infoTvSala, infoMesaComer, infoPoltrona, infoQuadroCor]
 let infoAtiva = false
 let infoAtual = 0 
 let capituloAtual = 'capitulo1'
 
 
 dialogos.forEach(dialogo => {dialogo.forEach(d => {
-    d.lines = quebraTexto(ctx, d.texto, 370)})});  
-
-
+    d.lines = quebraTexto(ctx, d.texto, 310)})});
+    
 
 // avançar dialogos
 function avancarDialogo(){
@@ -50,6 +49,8 @@ function avancarDialogo(){
                     aumentarBarra();
                 }})
 
+
+
 function drawCapitulo1(){
     ctx.clearRect(0,0, canvas.width, canvas.height);
 
@@ -71,6 +72,8 @@ function drawCapitulo1(){
 
             window.addEventListener('keypress', (e) => {
                 if (e.key === "Enter" && dialogoAtivo){ avancarDialogo();;}
+
+                if (e.key === "Enter" && infoAtiva){ infoAtiva = false}
 
                     if (e.key === "Enter" && dialogoAtivo && dialogoAtual === 0 && linhaAtual <= dialogos.length -  1 && animacaoAtual ==='animateQuarto'){;
                         gsap.set('#teclaEnter', {
@@ -113,7 +116,7 @@ function drawDialogos(){
         ctx.strokeRect(50,400,920,140);
     
         // desenha texto falas
-        ctx.font='12px dogicapixel';
+        ctx.font='14px dogicapixel';
         ctx.fillStyle='white';  
         const altura = 26;
     
@@ -134,8 +137,20 @@ function drawDialogos(){
 
         
     if (infoAtiva) {
+
+        infos.forEach(info => {
+            info.lines = quebraTexto(ctx, info.texto, 700); // Quebra o texto e armazena as linhas
+        });
+
             const info = infos[infoAtual]
-           ctx.fillText(info.texto, 200, 435)
+          // ctx.fillText(info.texto, 100, 465)
+           
+        
+info.lines.forEach((line, index) => {
+    ctx.fillText(line, 100, 435 + (index * altura)); // Desenha cada linha na posição adequada
+});
+
+           
 }
 
 
@@ -159,10 +174,8 @@ if (dialogoAtivo){
         
 }
 
-//bareiras e colisões mapa 
 
-
-//CENA 1  -> andando pela casa ---------------------------------------------------------------
+//CENA 1 
 function animateQuarto(){
     animacaoAtual = 'animateQuarto'
 
@@ -206,7 +219,7 @@ function animateQuarto(){
     ctx.drawImage(juliImg, 60, 405, 130, 130);
 
     // desenha texto falas
-    ctx.font='12px dogicapixel';
+    ctx.font='14px dogicapixel';
     ctx.fillStyle='white';  
     const altura = 26;
 
@@ -306,6 +319,7 @@ function animateQuarto(){
         }   if(!dialogoAtivo && dialogoAtual === 5){
 
             window.cancelAnimationFrame(animateQuartoId)
+            
 
             gsap.to('#overllapingDiv', {
                 opacity:    1,
@@ -315,10 +329,13 @@ function animateQuarto(){
                        opacity: 1,
                        duration: 3,
                        onComplete(){
+                           desenhaBarreirasCasa()
                           animateCasa()
+                          mudarMusica(musicaCapUm.musicaAnimateCasa)
                           player.moving = false
                           dialogoAtivo = true
-                          dialogoAtual =6
+                          dialogoAtual = 6
+                          player.position.x = 730
 
                           gsap.to('#overllapingDiv', {
                             opacity:0,
@@ -334,6 +351,8 @@ function animateQuarto(){
     
     
 };
+// Configura as barreiras do mapa "Casa"
+
 
 // saida casa 
 const saidaMapCasa = [];
@@ -359,10 +378,9 @@ saidaMapCasa.forEach((row, i) => {
 
 
 
-//desenhaBarreirasCasa()
-
-const movables = [CasaFundo, ...boundaries, ...saidas];
-
+const sair = {
+    initiated: false
+}
 function colisoesQuadrados({quadrado1, quadrado2}){
     return (quadrado1.position.x + quadrado1.width >= quadrado2.position.x 
         && quadrado1.position.x <= quadrado2.position.x + quadrado2.width 
@@ -370,15 +388,31 @@ function colisoesQuadrados({quadrado1, quadrado2}){
         && quadrado1.position.y + quadrado1.height >= quadrado2.position.y)
 }
 
-const sair = {
-    initiated: false
-}
-
 
 //function animate(){dialogoCena2AndarCasa();const animateID = window.requestAnimationFrame(animate)}
+let mapaAtual = null
+let ativo = true
 
+function carregarBarreiras() {
+    // Verifica se o mapa mudou
+    if (ativo && mapaAtual !== "casa") {
+        mapaAtual = "casa";
+        boundaries = []; // Limpa barreiras anteriores
+        desenhaBarreirasCasa(); // Carrega barreiras da casa
+    } else if (!ativo && mapaAtual !== "corredor") {
+        mapaAtual = "corredor";
+        boundaries = []; // Limpa barreiras anteriores
+        desenhaBarreirasCorredor(); // Carrega barreiras do corredor
+    }
+}
+//player.position.x = 730
 function andaPersonagemJu(){
 
+   const movables = [CasaFundo, ...boundaries, ...saidas];
+
+   if (dialogoAtual=== 12){
+    movables.push(playerDuarte, playerRick, playerRegina, EscolaFundo)
+   }
     let moving = true;
 
     player.moving = false 
@@ -469,10 +503,12 @@ function andaPersonagemJu(){
 let escolhaListenerAtivo = false
 let animateID;
 
-function animateCasa(){
-    animacaoAtual = 'animateCasa'     
-    
 
+function animateCasa(){
+    ativo= true
+    carregarBarreiras();
+    animacaoAtual = 'animateCasa' 
+     
    const animateID = window.requestAnimationFrame(animateCasa)
 
    ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -482,14 +518,13 @@ function animateCasa(){
    
 //saidas.forEach((saida) => { saida.drawBarreiras() })
 
-
    CasaFundo.desenhaCoisas();
    dialogoAtual=6
 
    //boundaries.forEach((boundary) => { boundary.drawBarreiras() })
    player.desenhaCoisas();
 
-   if (dialogoAtivo){drawDialogos()}
+   if (dialogoAtivo || infoAtiva){drawDialogos()}
 
 
     if (!dialogoAtivo && dialogoAtual === 6){
@@ -535,6 +570,7 @@ if (keys.a.pressed || keys.ArrowDown.pressed){
                             duration: 0.4,
                             onComplete(){     
                          /// sai de casa -> nova animação 
+                        
                          animateRua() 
             
                          gsap.to('#overllapingDiv', {
@@ -579,18 +615,27 @@ if (keys.a.pressed || keys.ArrowDown.pressed){
     andaPersonagemJu()
 
     
-//interações com coisas na casa 
-if (CasaFundo.position.x >= 122 && CasaFundo.position.y >= -454){
-    infoAtiva = true
-    infoAtual = 0
-    drawDialogos()
-    
-} else {infoAtiva = false}
+
+
 }
     console.log(CasaFundo.position.x + " e " + CasaFundo.position.y)
-
-
 };
+
+
+//interações com coisas na casa 
+window.addEventListener('keypress', (e) => { 
+    if (e.key === "l") {
+        if (CasaFundo.position.x >= 220 && CasaFundo.position.y >= -470 && CasaFundo.position.x <= 295 && CasaFundo.position.y <= -410){
+            infoAtiva = true
+            infoAtual = 0
+            
+            
+        }else if (CasaFundo.position.x >= 170 && CasaFundo.position.y >= -780 && CasaFundo.position.x <= 280 && CasaFundo.position.y <= -760){
+            infoAtiva = true
+            infoAtual = 1        
+    }
+}
+});
 
 
 let animateRuaId;
@@ -645,7 +690,6 @@ const linha = dialogo[linhaAtual]
   // dialogoAtivo = false
    playerJU2.image = playerJU2.sprites.right
    playerJU2.moving = true
-
    playerJU2.position.x += 3
 
  } 
@@ -731,6 +775,7 @@ gsap.to('#textocreditos', {
                                         reposicionaposicao()
                                         dialogoAtivo = true
                                         animateCalcada()
+                                        mudarMusica(musicaCapUm.musicaAnimateCalcada)
 
                         gsap.to('#overllapingDiv', {
                             opacity: 0,
@@ -763,6 +808,7 @@ function reposicionaposicao(){
     playerDuarte.position.x = 1100
     onibus.position.x = -5
     onibus.position.y = 245
+    ativo = false
     
 }
 
@@ -780,15 +826,16 @@ function reposicionaposicaodenv(){
         playerDuarte.position.y = 250
         playerDuarte.position.x = 55
         playerDuarte.moving = false
+        playerDuarte.image = playerDuarte.sprites.down
 
         playerRegina.position.x= 105
         playerRegina.position.y = 410
         playerRegina.image = playerRegina.sprites.up
         playerRegina.moving = false
 
-        movables.push(playerDuarte, playerRick, playerRegina, EscolaFundo)
-    
+      //  movables.push(playerDuarte, playerRick, playerRegina, EscolaFundo)
 }
+
 let offsetX = 0
 const velocidade = 2;
 let desenhapersonagens = true
@@ -837,11 +884,11 @@ if(dialogoAtivo && onibus.position.x <= -501){drawDialogos()}
 
 if(onibus.position.x <= -500 && playerJU2.position.x <= 60 && dialogoAtivo){
     dialogoAtivo= true
-    dialogoAtual = 9
+    dialogoAtual = 8
        
 }  
 
- if (dialogoAtual === 9 && !dialogoAtivo){
+ if (dialogoAtual === 8 && !dialogoAtivo){
     playerJU2.image = playerJU2.sprites.right
     playerJU2.moving = true
 
@@ -867,11 +914,11 @@ if(onibus.position.x <= -500 && playerJU2.position.x <= 60 && dialogoAtivo){
         playerRick.image = playerRick.sprites.down
     
         dialogoAtivo = true
-        dialogoAtual = 10
+        dialogoAtual = 9
     } 
 
 }
-   if (!dialogoAtivo && dialogoAtual === 10){
+   if (!dialogoAtivo && dialogoAtual === 9){
     playerRegina.image = playerRegina.sprites.right
     playerRegina.moving = true
 
@@ -883,10 +930,10 @@ if(onibus.position.x <= -500 && playerJU2.position.x <= 60 && dialogoAtivo){
         playerRegina.image = playerRegina.sprites.down
 
         dialogoAtivo = true
-        dialogoAtual = 11
+        dialogoAtual = 10
     }
 
-}  if (!dialogoAtivo && dialogoAtual === 11){
+}  if (!dialogoAtivo && dialogoAtual === 10){
     playerDuarte.image = playerDuarte.sprites.left
     playerDuarte.moving = true
     if(andaDuarte){ playerDuarte.position.x -=3}
@@ -896,10 +943,10 @@ if(onibus.position.x <= -500 && playerJU2.position.x <= 60 && dialogoAtivo){
         playerDuarte.image = playerDuarte.sprites.down
         playerDuarte.moving=false
         dialogoAtivo = true
-        dialogoAtual = 12
+        dialogoAtual = 11
     
     }
-} if (dialogoAtual === 12 && !dialogoAtivo){
+} if (dialogoAtual === 11 && !dialogoAtivo){
     andandocalcada = true
     andaRegina = true
     andaDuarteFrente = true
@@ -938,6 +985,7 @@ if(onibus.position.x <= -500 && playerJU2.position.x <= 60 && dialogoAtivo){
             onComplete(){
                 reposicionaposicaodenv()
                 animateCorredor()
+                dialogoAtivo = true
 
                 gsap.to('#overllapingDiv', {
                     opacity: 0,
@@ -949,8 +997,19 @@ if(onibus.position.x <= -500 && playerJU2.position.x <= 60 && dialogoAtivo){
 }
 
 } 
+
+//desenhaBarreirasCorredor()
+function reposicionaSala(){
+    playerJU2.position.x = 280
+ playerJU2.position.y = 500
+ playerJU2.image = playerJU2.sprites.up
+ playerJU2.moving = false
+}
+
 let animateCorredorId;
 function animateCorredor(){
+    ativo = false
+    carregarBarreiras()
     animacaoAtual = 'animateCorredor'
     
  animateCorredorId = window.requestAnimationFrame(animateCorredor)
@@ -961,14 +1020,47 @@ function animateCorredor(){
     ctx.fillRect(0,0, canvas.width, canvas.height);
 
     EscolaFundo.desenhaCoisas()
-
+    playerDuarte.desenhaCoisas()
+    player.desenhaCoisas()
     playerRick.desenhaCoisas()
     playerRegina.desenhaCoisas()
-    playerDuarte.desenhaCoisas()
-//playerRick.position.y -=3
-    player.desenhaCoisas()
 
-    andaPersonagemJu()
+dialogoAtual = 12
+
+if(infoAtiva){drawDialogos()}
+
+    if(dialogoAtivo && dialogoAtual === 12){ 
+
+        //quadrado pret
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.fillRect(50,15, 920, 140);
+    
+    ctx.beginPath();
+    ctx.strokeStyle = 'gold';
+    ctx.strokeRect(50,15,920,140);
+    
+    ctx.font='12px dogicapixel';
+    ctx.fillStyle='white';  
+    const altura = 26;
+    
+    const dialogo = dialogos[dialogoAtual];
+    const linha = dialogo[linhaAtual]
+     if(linha.personagem === "Rick"){
+            ctx.drawImage(rickImg, 60, 20, 130, 130);
+        }else if(linha.personagem === "Juliana"){
+            ctx.drawImage(juliImg, 60, 20, 130, 130);
+        } else if(linha.personagem === "Regina"){
+            ctx.drawImage(reginaImg, 60, 20, 130, 130);
+        }else if(linha.personagem === "Duarte"){
+            ctx.drawImage(duarteImg, 60, 20, 130, 130);
+        }
+    
+      linha.lines.forEach((line, index) => {ctx.fillText(line, 200, 45 + (index * altura))})  
+    
+    } if (!dialogoAtivo && dialogoAtual === 12){
+
+        andaPersonagemJu()
+    }
 
 
 //interações objetos no corrdor da escola
@@ -976,7 +1068,7 @@ function animateCorredor(){
     if (EscolaFundo.position.x >= -910 && EscolaFundo.position.y >=-53 && EscolaFundo.position.x <= -870 && EscolaFundo.position.y <=-53 && keys.ArrowUp.pressed){
         opacaoAtiva = true
         opcaoAtual = 1
-        drawDialogos()
+        drawDialogos()//12
 
         window.cancelAnimationFrame(animateCorredorId)
        /* window.addEventListener('keypress', (e) => {
@@ -984,11 +1076,8 @@ function animateCorredor(){
         if(!escolhaListenerAtivo) {
             const escolhaHandler = (event) => {
             if (event.key === '1') {
-
-                ctx.fillStyle='pink'
-                ctx.fillRect(0,0, canvas.width, canvas.height);
                    
-               /* window.cancelAnimationFrame(animateCorredorId)
+               window.cancelAnimationFrame(animateCorredorId)
 
                 gsap.to('#overllapingDiv', { // transição
                     opacity: 1,
@@ -1000,8 +1089,9 @@ function animateCorredor(){
                         opacity: 1,
                         duration: 0.4,
                         onComplete(){     
-                     /// sai de casa -> nova animação 
-                     animateRua() 
+                     /// sai de casa -> nova animação
+                     reposicionaSala() 
+                     animateSala() 
         
                      gsap.to('#overllapingDiv', {
                         opacity: 0,
@@ -1011,7 +1101,7 @@ function animateCorredor(){
                      })
                       
                     }
-                }); */
+                }); 
                 document.removeEventListener('keydown', escolhaHandler)
                 escolhaListenerAtivo = false
 
@@ -1034,7 +1124,26 @@ function animateCorredor(){
     console.log(EscolaFundo.position.x + " e " + EscolaFundo.position.y)
  
 }
-
+window.addEventListener('keypress', (e) => { 
+    if (e.key === "l") {
+    if (EscolaFundo.position.x >=-820 && EscolaFundo.position.x <=-720 && EscolaFundo.position.y >=-80 && EscolaFundo.position.y <= -30){
+            infoAtiva = true
+            infoAtual = 5
+      }
+}
+});
+let animateSalaId;
 function animateSala(){
     animacaoAtual = 'animateSala'
+
+animateSalaId = window.requestAnimationFrame(animateSala)
+
+ctx.clearRect(0,0, canvas.width, canvas.height);
+
+ctx.fillStyle='black'
+ctx.fillRect(0,0, canvas.width, canvas.height);
+
+    ctx.drawImage(salaAulaImg,100,-120);
+    playerValmir.desenhaCoisas()
+    playerJU2.desenhaCoisas()
 }

@@ -3,11 +3,10 @@ const dialogo1 =[
     {texto: "..."},
     {texto: "...zzZ"},
    {  texto: "AHHHHHHHHH"}, 
-    {texto: "NÃO, DE NOVO NÃO!!!!!!!!!!😢😢😢"}];
+    {texto: "NÃO, DE NOVO NÃO!!!!!!!!!!"}];
 
 const dialogo2 =[
     {  texto: "..."}, 
-    {texto: "CADÊ"},
     {texto: "CADÊ"},
     {texto: "..."},]
 
@@ -132,57 +131,157 @@ const dialogo8 = [
 
 const dialogo9 = [
     {  personagem: "Rick",
-        texto: "BTS, também conhecido como Bangtan Boys é um grupo masculino sul-coreano formado pela empresa Big Hit Music, uma subsidiária da HYBE Corporation, em 2013. Ele é composto por sete membros: RM, Jin, SUGA, J-Hope, Jimin, V e Jungkook."},
+        texto: "Mana "},
+    {  personagem: "Rick",
+        texto: "Eu vi no Kiwi esse meme AHAHA"},
+    {  personagem: "Rick",
+        texto: "Achei MUITO engraçado AHAHAAHAHAHAHA"},
     {  personagem: "Juliana",
-        texto: " Meu deus, que noite foi essa"}, 
+        texto: " Engraçado?"},
     {  personagem: "Juliana",
-        texto: "Loremisusoaos absjasjas"},
+        texto: "É perturbador, isso sim."},
     {  personagem: "Juliana",
-        texto: "fim"}
+        texto: "Ai..."},
+    {  personagem: "Juliana",
+        texto: "O mijo na privada..."},
+    {  personagem: "Rick",
+        texto: "AAHAHAHAHAHAHAHAHAHAHAHHAHA"}
 ]
 
 const dialogo10 = [
     {  personagem: "Rick",
-        texto: "mas que demora"},
-    {  personagem: "Juliana",
-        texto: "É dificíl... Mas fazer o que né?"}, 
+        texto: "Mano"},
     {  personagem: "Rick",
-        texto: "olha a Regina e o Duarte"},
+        texto: "Sabe o Gustavo do 3° Ano?"},
     {  personagem: "Juliana",
-        texto: "fim"}
+        texto: "Sei"}, 
+    {  personagem: "Juliana",
+        texto: "O que que tem ele?"}, 
+    {  personagem: "Rick",
+        texto: "Esses dias eu tava fazendo aquelas pinturas que estava postando no Kiwi, né?"},
+    {  personagem: "Rick",
+        texto: "Aí do nada"},
+    {  personagem: "Rick",
+        texto: "O cara comentou no post que estava uma porcaria minhas pinturas"},
+    {  personagem: "Rick",
+        texto: " DO NADA"},
+    {  personagem: "Rick",
+        texto: " Aí quando ia responder ele de volta"},
+    {  personagem: "Rick",
+        texto: " O cara apagou o comentário"},
+    {  personagem: "Rick",
+        texto: " E eu fiquei sem entender nada"},
+    {  personagem: "Juliana",
+        texto: " Ai mano"},
+    {  personagem: "Juliana",
+        texto: " Nem compensa você responder esse cara"},
+    {  personagem: "Juliana",
+        texto: " O ano ta acabando..."},
+    {  personagem: "Juliana",
+        texto: " E já já ele ta fora daqui"},
+    {  personagem: "Rick",
+        texto: " É isso que me consola.."}
 ]
 
 const dialogo11 = [
+    {  personagem: "Regina",
+        texto: "OIII GENTE!!!"},
+    {  personagem: "Juliana",
+        texto: " Oiii amiga!"}, 
     {  personagem: "Rick",
-        texto: "BTS, também conhecido como Bangtan Boys é um grupo masculino sul-coreano formado pela empresa Big Hit Music, uma subsidiária da HYBE Corporation, em 2013. Ele é composto por sete membros: RM, Jin, SUGA, J-Hope, Jimin, V e Jungkook."},
-    {  personagem: "Juliana",
-        texto: " Meu deus, que noite foi essa"}, 
-    {  personagem: "Juliana",
-        texto: "Loremisusoaos absjasjas"},
-    {  personagem: "Juliana",
-        texto: "fim"}
+        texto: "OIIIII"},
 ]
 
 const dialogo12 = [
+    {  personagem: "Duarte",
+        texto: " Oi rapeiziada!!!"},
+    {  personagem: "Rick",
+        texto: " OIIII"}, 
+    {  personagem: "Juliana",
+        texto: " Oiiii"},
     {  personagem: "Regina",
-        texto: "BTS"},
+        texto: " AMIGO!!!"},
+    {  personagem: "Regina",
+        texto: " Duarte, que saudade"},
+    {  personagem: "Rick",
+        texto: " Que saudades de você amigo!!!"},
+    {  personagem: "Duarte",
+        texto: " Tambémmmm gente!"},
+    {  personagem: "Duarte",
+        texto: "Gente"},
+    {  personagem: "Duarte",
+        texto: "E o trabalho do Valmir? "},
     {  personagem: "Juliana",
-        texto: " Meu deus, que noite foi essa"}, 
+        texto: " Foi dificil, né?"},
+    {  personagem: "Duarte",
+        texto: "Meu Deus "},
+    {  personagem: "Duarte",
+        texto: "Você não tem noção "},
+    {  personagem: "Duarte",
+        texto: "Pelo menos a parte de vocês não precisava procurar em site gringo "},
     {  personagem: "Juliana",
-        texto: "Loremisusoaos absjasjas"},
+        texto: "KKKKKKKKK"},
     {  personagem: "Juliana",
-        texto: "fim"}
+        texto: "Você que escolheu essa parte KKKKKKK"},
+    {  personagem: "Duarte",
+        texto: "Mas cara "},
+    {  personagem: "Duarte",
+        texto: "Nunca dei tanto de mim pra um trablho "},
+    {  personagem: "Duarte",
+        texto: "Sem zoeira"},
+    {  personagem: "Regina",
+        texto: "E ainda teve umas pessoas falando que a gente 'copiou' o trabalho deles "},
+    {  personagem: "Juliana",
+        texto: "SIM! "},
+    {  personagem: "Juliana",
+        texto: "Achei isso tão sem noção "},
+    {  personagem: "Rick",
+        texto: "Mas fazer o que né "},
+    {  personagem: "Rick",
+        texto: " Pelo menos temos uma pesquisa em site gringo AHAHAH"},
+    {  personagem: "Juliana",
+        texto: "KKKKKKK "},
+    {  personagem: "Regina",
+        texto: "HUEHUEHUE "},
+    {  personagem: "Duarte",
+        texto: "kikikikikiki "},
 ]
 
 const dialogo13 = [
     {  personagem: "Duarte",
-        texto: "BTS, também conhecido como Bangtan Boys é um grupo masculino sul-coreano formado pela empresa Big Hit Music, uma subsidiária da HYBE Corporation, em 2013. Ele é composto por sete membros: RM, Jin, SUGA, J-Hope, Jimin, V e Jungkook."},
-    {  personagem: "Rick",
-        texto: " Meu deus, que noite foi essa"}, 
-    {  personagem: "Juliana",
-        texto: "Loremisusoaos absjasjas"},
+        texto: "Bom gente"},
+    {  personagem: "Duarte",
+        texto: " Sala 4A aí nós vamos"},
+    {  personagem: "Duarte",
+        texto: "Só responder aqui a Camila"},
     {  personagem: "Regina",
-        texto: "fim"}
+        texto: " UUUUHHHHH"},
+    {  personagem: "Regina",
+        texto: "Respondendo a namorada né? "},
+    {  personagem: "Duarte",
+        texto: "Cala boca"},
+    {  personagem: "Duarte",
+        texto: "A gente só é amigos"},
+    {  personagem: "Rick",
+        texto: "Aham sei"},
+    {  personagem: "Rick",
+        texto: "Amigos..."},
+    {  personagem: "Rick",
+        texto: "-_-"},
+    {  personagem: "Juliana",
+        texto: " Gente, só vou guardar as coisas no meu armario e já vou indo para a sala"},
+    {  personagem: "Juliana",
+        texto: " Ok amiga"},
+    {  personagem: "Juliana",
+        texto: " Já vou indo pra sala também"},
+    {  personagem: "Rick",
+        texto: " Só vou ficar pra descobrie essa coisa do Duarte com a Camila e já vou"},
+    {  personagem: "Duarte",
+        texto: "-_-"},
+    {  personagem: "Juliana",
+        texto: "KKKKK"},
+    {  personagem: "Juliana",
+        texto: "Okay"},
 ]
 
 const dialogo14 = [
@@ -228,23 +327,20 @@ const opcaoEntrarSala = [
     }
 ];
 
-const infoPia = {texto: '"Escovar os dentes para começar o dia"'}
+const infoPia = {texto: '"Escovar os dentes para começar o dia"'};
 
-const infoTvSala = [
-    {texto: 'Hojejsjsjsj'}
-]
-const infoMesaComer = [
-    {texto: 'Minha mãe saiu, msss'}
-]
+const infoTvSala = {texto: '"MinFlix é o melhor serviço de streaming, principalmente, por que adoro ver Tapas e Beijos com o Rick e minha mãe"'};
 
-const infoGeladeira = [
-    {texto: 'Minha mãe saiu, msss'}
-]
+const infoMesaComer ={texto: '"Miinha eu adulta lamenta por não ter herdado os dotes culinarios da minha mãe"'};
 
-const infoPoltrona = [
-    {texto: 'A poltrona preferida do meu pai...'}
-]
+const infoGeladeira =  {texto: '[Recado] "Filha, eu deixei o café pronto na mesa. Seu remédio acabou ontem? Me mande mensagem caso precise que eu passe na farmácia. Tenha um otimo dia lá na escola! -Beijos, mamãe"'}
 
+
+const infoPoltrona ={texto: '"Ainda tem o cheiro do papai"'};
+
+const infoNote ={texto: '"Ainda tem o cheiro do papai"'};
+
+const infoQuadroCor = {texto: '[Cartza] - "Não se esqueça de se inscrever nos vestibulares de 2024!". "Daqui a pouco vou estar nessa mesma situação, vou tentar relaxar o máximo que eu posso!"'}
 
 // quebrando linhas do dialogo
 function quebraTexto(ctx, texto, maxWidth){

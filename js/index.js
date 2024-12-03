@@ -33,12 +33,14 @@ function draw(){
             break;
             case 'capitulo1':
             drawCapitulo1();
-            musica.musicaCapitulo1.stop()
+            musica.musicaMenuCapitulos.stop()
             Mostrabotoes(false);
             break;
             default:
                 drawMenu();
     }
+
+    alterarMusica(telaAtual)
     drawCaixaSom()
 }
 // musica 
@@ -51,9 +53,6 @@ const capitulosbotao = document.getElementById("capitulos")
 comecarbotao.addEventListener('click', function(){
     telaAtual = 'capitulo1';
     draw()
-    if(musica.musicaFundoMenu.playing()){
-        musica.musicaFundoMenu.stop()
-    }
 })
 
 
@@ -63,11 +62,6 @@ capitulosbotao.addEventListener('click', function(){
         capituloscaixa.style.display='inline-block';
     
     draw();
-    musica.musicaCapitulo1.play()
-
-    if(musica.musicaFundoMenu.playing()){
-        musica.musicaFundoMenu.stop()
-    }
 })
 
 //configuraçõessssssssss
@@ -102,7 +96,6 @@ voltarmenu.addEventListener('click', function(){
     telaAtual ='menu'
     capituloscaixa.style.display='none';
     draw()
-    musica.musicaCapitulo1.stop()
 })
 
 draw()
